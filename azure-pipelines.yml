@@ -1,0 +1,31 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: TerraformTaskV2@2
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: 'Azure subscription 1(2192b235-f880-4532-ac54-58e623ce2391)'
+        backendAzureRmResourceGroupName: 'cloud-shell-storage-westeurope'
+        backendAzureRmStorageAccountName: 'csb100300009dce53f1'
+        backendAzureRmContainerName: 'terraform'
+        backendAzureRmKey: 'blob'
