@@ -20,10 +20,13 @@ resource "azurerm_resource_group" "vwgroup" {
   location  = var.resource_group_location
 }
 
+#Create virtual machine
+
+
 # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {
     name                = "myVnet"
-    address_space       = ["10.0.0.1/16"]
+    address_space       = ["10.0.0.0/16"]
     location            = "germany west central"
     resource_group_name = azurerm_resource_group.vwgroup.name
 
@@ -37,7 +40,7 @@ resource "azurerm_subnet" "myterraformsubnet" {
     name                 = "mySubnet"
     resource_group_name  = azurerm_resource_group.vwgroup.name
     virtual_network_name = azurerm_virtual_network.myterraformnetwork.name
-    address_prefixes       = ["10.0.1.0/24"]
+    address_prefixes       = ["10.0.0.0/24"]
 }
 
 # Create public IPs
