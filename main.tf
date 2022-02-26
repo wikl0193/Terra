@@ -20,11 +20,21 @@ resource "azurerm_resource_group" "vwgroup" {
   location  = var.resource_group_location
 }
 
+# Create (and display) an SSH key
+resource "tls_private_key" "example_ssh" {
+  algorithm = "RSA"
+  rsa_bits = 4096
+}
+output "tls_private_key" { 
+    value = tls_private_key.example_ssh.private_key_pem 
+    sensitive = true
+}
+
 #Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "myVM"
     location              = "Germany West Central"
-    resource_group_name   = azurerm_resource_group.myterraformgroup.name
+    resource_group_name   = azurerm_resource_group.vwgroup.name
     network_interface_ids = [azurerm_network_interface.myterraformnic.id]
     size                  = "Standard_DS3_v2"
 
