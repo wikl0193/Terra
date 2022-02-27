@@ -1,8 +1,3 @@
-variable "resource_group_location" {
-  default = "germany west central"
-  description   = "Location of the resource group."
-}
-
 variable "azure_subscription_id" {
   default = "2192b235-f880-4532-ac54-58e623ce2391"
   description   = "Azure Subcription Id of the principle service"
