@@ -28,9 +28,11 @@ variable "service_principal_password" {
 }
 
 variable "prefix" {
+  default = "terraTestWilli"
   description = "The prefix which should be used for all resources in this example"
 }
 
 variable "location" {
+  default = "Germany West Central"
   description = "The Azure Region in which all resources in this example should be created."
 }
