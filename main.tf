@@ -1,12 +1,17 @@
 # Configuration of the Microsoft Azure Provider
 terraform {
-  required_version = ">=0.12"
-
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
       version = "~>2.0"
     }
+  }
+
+  backend "azurerm" {
+    resource_group_name  = "vwgroup"
+    storage_account_name = "diag0cf0808d345cd567"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
   }
 }
 
@@ -21,7 +26,7 @@ provider "azurerm" {
 
 # Creates the resource group 
 resource "azurerm_resource_group" "vwgroup" {
-  name      = "vwgroup.vwgroup-name.id"
+  name      = "vwgroup"
   location  = var.resource_group_location
 }
 
