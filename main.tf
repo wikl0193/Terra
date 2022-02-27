@@ -8,9 +8,9 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "vwgroup"
+    resource_group_name  = "vwgroup.vwgroup-name.id"
     storage_account_name = "diag0cf0808d345cd567"
-    container_name       = "tfstate"
+    container_name       = "terraform"
     key                  = "terraform.tfstate"
   }
 }
@@ -26,7 +26,7 @@ provider "azurerm" {
 
 # Creates the resource group 
 resource "azurerm_resource_group" "vwgroup" {
-  name      = "vwgroup"
+  name      = "vwgroup.vwgroup-name.id"
   location  = var.resource_group_location
 }
 
