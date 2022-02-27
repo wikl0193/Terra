@@ -42,7 +42,7 @@ output "tls_private_key" {
 
 #Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
-    name                  = "myTerraFormVM"
+    name                  = "myFirstTerraFormVM"
     location              = "Germany West Central"
     resource_group_name   = azurerm_resource_group.vwgroup.name
     network_interface_ids = [azurerm_network_interface.myterraformnic.id]
